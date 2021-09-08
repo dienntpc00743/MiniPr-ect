@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+</head>
+<body>
+	<div xmlns:th="http://www.thymeleaf.org">
+		<div class="list-group mt-4">
+			<a href="#" class="list-group-item list-group-item-action active">
+				Danh mục sản phẩm
+			</a>
+			<ul class="list-group list-group-flush">
+				<a style="text-decoration: none;" th:each="c: ${cates}" th:href="@{|/product/list?cid=${c.id}|}">
+					<li class="list-group-item">[[${c.name}]] </li>
+				</a>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

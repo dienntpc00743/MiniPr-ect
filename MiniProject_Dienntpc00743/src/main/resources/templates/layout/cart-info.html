@@ -1,0 +1,10 @@
+
+<div xmlns:th="http://www.thymeleaf.org">
+	<div class="list-group mt-4">
+		<a th:href="@{/cart/view}" class="list-group-item list-group-item-action active">
+			<img th:src="@{/images/cart.png}" />
+				{{cart.count}} items
+		</a>
+		
+	</div>
+</div>

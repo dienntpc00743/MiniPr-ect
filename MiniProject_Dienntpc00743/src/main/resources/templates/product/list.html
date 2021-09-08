@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<head>
+	<title>Title</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+	<main>
+		<div class="container">
+			<div class="row">
+				<div th:each="p:${items}">
+					<div class="col mt-4">
+						<div class="product-grid6">
+							<div class="product-image6" style="width:300px; height:250px">
+								<img class="pic-1" th:src="@{|/images/${p.image}|}" alt="">
+							</div>
+							<div class="product-content">
+								<h3 class="title">
+									<div th:text="${p.name}"></div>
+								</h3>
+								<div class="price">$[[${p.price}]]</div>
+							</div>
+							<ul class="social">
+								<li><a th:href="@{|/product/detail/${p.id}|}" data-tip="Xem chi tiết"><i class="fa fa-search"></i></a></li>
+								<li><button th:attr="ng-click=@{|cart.add(${p.id})|}" data-tip="Thêm vào giỏ hàng"><i
+											class="fa fa-shopping-cart"></i></button></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</main>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<style>
+		b {
+			color: rgb(255, 255, 255);
+		}
+		b:hover{
+		color: rgb(236, 65, 65);
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#007b5e;">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+			aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+			<a style="font-size: 18px;" class="navbar-brand" href="/product/list"><b>DienPC Store</b></a>
+			<ul class="navbar-nav mr-auto mt-0 mt-lg-0" style="font-size: 18px; ">
+
+				<li class="nav-item active">
+					<a class="nav-link" target="" href="/product/list"><b> <i class="fa fa-home" aria-hidden="true"></i>
+							Trang chủ</b>
+						<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" target="" href="#"><b><i class="fa fa-laptop" aria-hidden="true"></i>
+							Giới thiệu</b> </a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" target="" href="#"><b><i class="fa fa-mobile" aria-hidden="true"></i>
+							Liên hệ</b> </a>
+				</li>
+				<li class="nav-item active" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('PM')}">
+					<a class="nav-link" th:href="@{/admin/home/index}"><b><i class="fa fa-user" aria-hidden="true"></i>
+							Administrators</b>
+					</a>
+				</li>
+
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="Tìm kiếm" placeholder="Search" aria-label="Search">
+				<button class="btn btn-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+			</form>
+			
+			<ul class="navbar-nav navbar-right" style="font-size: 18px; margin-right: 75px">
+				<th:block th:if="${#request.remoteUser}">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<b><i class="fa fa-user" aria-hidden="true"></i> [[${#request.remoteUser}]]</b>
+						</a>
+						<div class="dropdown-menu navbar-expand-lg navbar-light bg-light"
+							aria-labelledby="navbarDropdown">
+
+							<a class="dropdown-item" href="#">Cập nhật
+								tài khoản</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Đổi mật khẩu</a>
+							<a class="dropdown-item" th:href="@{/order/list}">Đơn hàng
+								của tôi</a>
+							<a class="dropdown-item" th:href="@{/security/logoff}">Đăng
+								xuất</a>
+						</div>
+					</li>
+				</th:block>
+				<th:block th:unless="${#request.remoteUser}">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<b><i class="fa fa-user" aria-hidden="true"></i> Tài khoản</b>
+						</a>
+						<div class="dropdown-menu navbar-expand-lg navbar-light bg-light"
+							aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/security/login/form}">Đăng
+								nhập</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Đăng ký</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Quên mật khẩu</a>
+						</div>
+					</li>
+				</th:block>
+			</ul>
+		</div>
+	</nav>
+</body>
+
+</html>

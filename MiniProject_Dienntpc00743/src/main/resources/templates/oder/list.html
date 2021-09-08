@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+	<main>
+		<div th:fragment="shopping_cart">
+			<table class="table table-hover text-center mt-3">
+				<thead>
+					<tr class="table-success">
+						<th scope="col">Id</th>
+						<th scope="col">Name</th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Amount</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody class="text-center">
+					<tr ng-repeat="item in cart.items">
+						<th scope="row">{{item.id}}</th>
+						<td>{{item.name}}</td>
+						<td>${{item.price | number : 2}}</td>
+						<td><input ng-change="cart.saveToLocalStorage()" ng-model="item.qty" type="number" min="1"></td>
+						<td>${{item.qty*item.price | number : 2}}</td>
+						<td><button ng-click="cart.remove(item.id)" type="button"
+								class="btn btn-danger text-center">Xóa</button></td>
+					</tr>
+					<tr>
+						<td colspan="1">Tổng cộng</td>
+						<td colspan="3"></td>
+						<td>${{cart.amount}}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><button ng-click="cart.clear()" type="button" class="btn btn-danger">Reset</button></td>
+						<td><a class="btn btn-primary" th:href="@{/home/index}">Home</a></td>
+						<td colspan="3"></td>
+						<td><a class="btn btn-primary" th:href="@{/oder/checkout}">Checkout</a></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</body>
+
+</html>
